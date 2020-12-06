@@ -11,8 +11,8 @@ export const materiel: Store = {
 			text: ['Être prévenu de la disponibilité']
 		},
 		outOfStock: {
-			container: '.stockStatus',
-			text: ['Levertermijn onbekend', 'pre-order']
+			container: '.o-availability__value',
+			text: ['Rupture']
 		},
 		maxPrice: {
 			container: '.o-product__price',
@@ -176,118 +176,102 @@ export const materiel: Store = {
 		// 	url:
 		// 		'https://www.ldlc.com/fiche/PB00386928.html'
 		// },
-		// {
-		// 	brand: 'evga',
-		// 	model: 'xc3 ultra',
-		// 	series: '3070',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202010210027.html'
-		// },
-		// {
-		// 	brand: 'msi',
-		// 	model: 'gaming x trio',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009070052.html'
-		// },
-		// {
-		// 	brand: 'msi',
-		// 	model: 'suprim x',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202010220025.html'
-		// },
-		// {
-		// 	brand: 'msi',
-		// 	model: 'ventus 3x oc',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009070053.html'
-		// },
-		// {
-		// 	brand: 'gigabyte',
-		// 	model: 'vision oc',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009300085.html'
-		// },
-		// {
-		// 	brand: 'gigabyte',
-		// 	model: 'gaming oc',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009080083.html'
-		// },
-		// {
-		// 	brand: 'gigabyte',
-		// 	model: 'eagle oc',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009080086.html'
-		// },
-		// {
-		// 	brand: 'gigabyte',
-		// 	model: 'aorus master',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009290084.html'
-		// },
-		// {
-		// 	brand: 'gigabyte',
-		// 	model: 'aorus xtreme',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202011060056.html'
-		// },
-		// {
-		// 	brand: 'gigabyte',
-		// 	model: 'xtreme waterforce wb',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202011240220.html'
-		// },
-		// {
-		// 	brand: 'gigabyte',
-		// 	model: 'xtreme waterforce',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202011240219.html'
-		// },
-		// {
-		// 	brand: 'evga',
-		// 	model: 'ftw3',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009090100.html'
-		// },
-		// {
-		// 	brand: 'evga',
-		// 	model: 'ftw3 ultra',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009090101.html'
-		// },
-		// {
-		// 	brand: 'evga',
-		// 	model: 'xc3 black',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009090098.html'
-		// },
-		// {
-		// 	brand: 'evga',
-		// 	model: 'xc3',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009090099.html'
-		// },
-		// {
-		// 	brand: 'evga',
-		// 	model: 'xc3 ultra',
-		// 	series: '3080',
-		// 	url:
-		// 		'https://www.materiel.net/produit/202009100088.html'
-		// },
+		{
+			brand: 'evga',
+			model: 'xc3 ultra',
+			series: '3070',
+			url: 'https://www.materiel.net/produit/202010210027.html'
+		},
+		{
+			brand: 'msi',
+			model: 'gaming x trio',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009070052.html'
+		},
+		{
+			brand: 'msi',
+			model: 'suprim x',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202010220025.html'
+		},
+		{
+			brand: 'msi',
+			model: 'ventus 3x oc',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009070053.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'vision oc',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009300085.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'gaming oc',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009080083.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'eagle oc',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009080086.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'aorus master',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009290084.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'aorus xtreme',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202011060056.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'xtreme waterforce wb',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202011240220.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'xtreme waterforce',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202011240219.html'
+		},
+		{
+			brand: 'evga',
+			model: 'ftw3',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009090100.html'
+		},
+		{
+			brand: 'evga',
+			model: 'ftw3 ultra',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009090101.html'
+		},
+		{
+			brand: 'evga',
+			model: 'xc3 black',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009090098.html'
+		},
+		{
+			brand: 'evga',
+			model: 'xc3',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009090099.html'
+		},
+		{
+			brand: 'evga',
+			model: 'xc3 ultra',
+			series: '3080',
+			url: 'https://www.materiel.net/produit/202009100088.html'
+		},
 
 		{
 			brand: 'msi',

@@ -3,6 +3,7 @@ import {StatusCodeRangeArray, Store} from './store/model';
 import {config} from './config';
 import {disableBlockerInPage} from './adblocker';
 import {logger} from './logger';
+import UserAgent from 'user-agents';
 
 export function getSleepTime(store: Store) {
 	const minSleep = store.minPageSleep as number;
@@ -55,7 +56,8 @@ export async function usingPage<T>(
 ): Promise<T> {
 	const page = await browser.newPage();
 	page.setDefaultNavigationTimeout(config.page.timeout);
-	await page.setUserAgent(getRandomUserAgent());
+	const userAgent = new UserAgent();
+	await page.setUserAgent(userAgent.toString());
 
 	try {
 		return await cb(page, browser);

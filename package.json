@@ -1,5 +1,5 @@
 {
-  "name": "streetmerchant",
+  "name": "gpu-checker",
   "description": "🔮 For all your Nvidia needs",
   "main": "src/index.ts",
   "scripts": {
@@ -27,6 +27,7 @@
   "dependencies": {
     "@jef/pushbullet": "^2.4.3",
     "@slack/web-api": "^5.14.0",
+    "@types/user-agents": "^1.0.0",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.3",
     "discord-webhook-node": "^1.1.8",
@@ -52,6 +53,7 @@
     "twitch-auth": "^4.3.3",
     "twitch-chat-client": "^4.3.3",
     "twitter": "^1.7.1",
+    "user-agents": "^1.0.559",
     "winston": "^3.3.3"
   },
   "devDependencies": {
@@ -74,9 +76,9 @@
     "prettier": true,
     "rules": {
       "no-warning-comments": "off",
-      "sort-imports": "error",
-      "sort-keys": "error",
-      "sort-vars": "error"
+      "sort-imports": "warn",
+      "sort-keys": "warn",
+      "sort-vars": "warn"
     }
   },
   "husky": {

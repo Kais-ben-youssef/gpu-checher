@@ -326,6 +326,13 @@ export const ldlc: Store = {
 
 		{
 			brand: 'gigabyte',
+			model: 'turbo',
+			series: '3090',
+			url: 'https://www.ldlc.com/fiche/PB00391621.html'
+		},
+
+		{
+			brand: 'gigabyte',
 			model: 'gaming oc',
 			series: 'rx6800xt',
 			url: 'https://www.ldlc.com/fiche/PB00393086.html'

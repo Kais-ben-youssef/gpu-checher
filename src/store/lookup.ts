@@ -21,6 +21,7 @@ import {filterStoreLink} from './filter';
 import open from 'open';
 import {processBackoffDelay} from './model/helpers/backoff';
 import {sendNotification} from '../notification';
+import UserAgent from 'user-agents';
 
 const inStock: Record<string, boolean> = {};
 
@@ -57,7 +58,9 @@ async function lookup(browser: Browser, store: Store) {
 			? await context.newPage()
 			: await browser.newPage();
 		page.setDefaultNavigationTimeout(config.page.timeout);
-		await page.setUserAgent(getRandomUserAgent());
+
+		const userAgent = new UserAgent();
+		await page.setUserAgent(userAgent.toString());
 
 		if (store.disableAdBlocker) {
 			try {
@@ -191,6 +194,19 @@ async function lookupCardInStock(store: Store, page: Page, link: Link) {
 		type: 'textContent'
 	};
 
+	if (store.labels.captcha) {
+		const options: Selector = {
+			...baseOptions,
+			requireVisible: false,
+			type: 'outerHTML' as const
+		};
+		if (await pageIncludesLabels(page, store.labels.captcha, options)) {
+			logger.warn(Print.captcha(link, store, true));
+			await delay(getSleepTime(store));
+			return false;
+		}
+	}
+
 	if (store.labels.outOfStock) {
 		if (await pageIncludesLabels(page, store.labels.outOfStock, baseOptions)) {
 			logger.info(Print.outOfStock(link, store, true));
@@ -247,14 +263,6 @@ async function lookupCardInStock(store: Store, page: Page, link: Link) {
 		const maxPrice = config.store.maxPrice.series[link.series];
 		if (price) {
 			logger.info(Print.maxPrice(link, store, price, maxPrice, true));
-			return false;
-		}
-	}
-
-	if (store.labels.captcha) {
-		if (await pageIncludesLabels(page, store.labels.captcha, baseOptions)) {
-			logger.warn(Print.captcha(link, store, true));
-			await delay(getSleepTime(store));
 			return false;
 		}
 	}

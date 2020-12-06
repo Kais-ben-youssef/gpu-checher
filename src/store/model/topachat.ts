@@ -440,6 +440,41 @@ export const TopAchat: Store = {
 			series: '3090',
 			url:
 				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20005257.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'aorus xtreme',
+			series: '3090',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006135.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'gaming oc',
+			series: '3090',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20005260.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'eagle oc',
+			series: '3090',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20005261.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'aorus master',
+			series: '3090',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20005641.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'turbo',
+			series: '3090',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006283.html'
 		}
 	],
 	name: 'topachat'

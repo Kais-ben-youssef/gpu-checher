@@ -3,8 +3,8 @@ import {Store} from './store';
 export const AmazonFr: Store = {
 	labels: {
 		captcha: {
-			container: 'body',
-			text: ['Saisissez les caractères que vous voyez dans cette image : ']
+			container: '#captchacharacters',
+			text: ['']
 		},
 		inStock: {
 			container: '#a-autoid-0',
@@ -31,7 +31,7 @@ export const AmazonFr: Store = {
 			brand: 'msi',
 			model: 'gaming x trio',
 			series: '3080',
-			url: 'https://www.amazon.fr/dp/offer-listing/B07GQYQ2YW'
+			url: 'https://www.amazon.fr/dp/offer-listing/B08NC8YP6M'
 		},
 		{
 			brand: 'msi',
@@ -49,7 +49,7 @@ export const AmazonFr: Store = {
 			brand: 'evga',
 			model: 'ftw3 ultra',
 			series: '3080',
-			url: 'https://www.amazon.fr/dp/offer-listing/B08P1J5B26'
+			url: 'https://www.amazon.fr/dp/offer-listing/B08HR3Y5GQ'
 		},
 		{
 			brand: 'evga',
