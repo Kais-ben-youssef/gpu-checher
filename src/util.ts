@@ -57,7 +57,7 @@ export async function usingPage<T>(
 	const page = await browser.newPage();
 	page.setDefaultNavigationTimeout(config.page.timeout);
 	const userAgent = new UserAgent();
-	await page.setUserAgent(userAgent.toString());
+	await page.setUserAgent(getRandomUserAgent());
 
 	try {
 		return await cb(page, browser);
