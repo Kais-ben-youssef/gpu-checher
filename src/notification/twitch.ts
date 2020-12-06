@@ -64,7 +64,7 @@ chatClient.onJoin((channel: string, user: string) => {
 			if (message !== undefined) {
 				try {
 					chatClient.say(channel, message);
-					logger.info('✔ twitch message sent');
+					// Logger.info('✔ twitch message sent');
 				} catch (error: unknown) {
 					logger.error("✖ couldn't send twitch message", error);
 				}
@@ -79,7 +79,11 @@ chatClient.onDisconnect(() => {
 	alreadySaying = false;
 });
 
-export function sendTwitchMessage(link: Link, store: Store) {
+export function sendTwitchMessage(
+	link: Link,
+	store: Store,
+	comingSoon?: boolean
+) {
 	if (
 		tokenData.accessToken &&
 		twitch.channel &&
@@ -88,10 +92,19 @@ export function sendTwitchMessage(link: Link, store: Store) {
 		tokenData.refreshToken
 	) {
 		logger.debug('↗ sending twitch message');
-
-		messages.push(
-			`${Print.inStock(link, store)}\n${link.cartUrl ? link.cartUrl : link.url}`
-		);
+		if (comingSoon) {
+			messages.push(
+				`${Print.comingSoon(link, store, null, false)} \n${
+					link.cartUrl ? link.cartUrl : link.url
+				}`
+			);
+		} else {
+			messages.push(
+				`${Print.inStock(link, store)} \n${
+					link.cartUrl ? link.cartUrl : link.url
+				}`
+			);
+		}
 
 		if (!alreadySaying) {
 			alreadySaying = true;

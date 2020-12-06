@@ -34,6 +34,7 @@ export type Brand =
 
 export type Series =
 	| 'test:series'
+	| '3060'
 	| '3070'
 	| '3080'
 	| '3090'
@@ -85,6 +86,8 @@ export type Model =
 	| 'nitro oc se'
 	| 'nitro oc'
 	| 'phantom gs'
+	| 'phantom'
+	| 'phantom gaming d oc'
 	| 'phoenix gs oc'
 	| 'phoenix gs'
 	| 'phoenix'
@@ -92,6 +95,8 @@ export type Model =
 	| 'ps5 digital'
 	| 'sg oc'
 	| 'sg'
+	| 'ex oc'
+	| 'oc se'
 	| 'strix lc'
 	| 'strix oc'
 	| 'strix'
@@ -106,6 +111,7 @@ export type Model =
 	| 'twin x2'
 	| 'uprising'
 	| 'ventus 2x oc'
+	| 'ventus 2x oc v1'
 	| 'ventus 2x'
 	| 'ventus 3x oc'
 	| 'ventus 3x'
@@ -117,7 +123,16 @@ export type Model =
 	| 'xc3 ultra'
 	| 'xc3'
 	| 'xlr8 revel'
-	| 'xlr8 uprising';
+	| 'xlr8 uprising'
+	| 'xlr8 revel epic-x'
+	| 'Ghost OC'
+	| 'Ghost'
+	| 'red dragon'
+	| 'challenger pro oc'
+	| 'fighter'
+	| 'suprim x'
+	| 'xtreme waterforce'
+	| 'xtreme waterforce wb';
 
 export type Link = {
 	brand: Brand;
@@ -131,14 +146,20 @@ export type Link = {
 };
 
 export type LabelQuery = Element[] | Element | string[];
+export type Occasion = {
+	selector: string;
+};
 
 export type Labels = {
 	bannedSeller?: LabelQuery;
 	captcha?: LabelQuery;
 	container?: string;
 	inStock?: LabelQuery;
+	comingSoon?: LabelQuery;
 	outOfStock?: LabelQuery;
 	maxPrice?: Pricing;
+	printPrice?: boolean;
+	occasion?: Occasion;
 };
 
 export type StatusCodeRangeArray = Array<number | [number, number]>;
@@ -171,4 +192,5 @@ export type Store = {
 	waitUntil?: LoadEvent;
 	minPageSleep?: number;
 	maxPageSleep?: number;
+	DNS?: string;
 };

@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+    gpu-checker:
+        build: 
+            context: .
+        command: "start:dev"
+        cap_add:
+          - SYS_ADMIN
+        env_file:
+          - .env
+
+        
+    # front-builder:
+    #     user: ${CURRENT_UID}
+    #     build: 
+    #         context: .
+    #         target: builder
+
+

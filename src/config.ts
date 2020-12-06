@@ -7,7 +7,7 @@ config_({path: path.resolve(__dirname, '../.env')});
 
 console.info(
 	banner.render(
-		envOrBoolean(process.env.ASCII_BANNER, false),
+		envOrBoolean(process.env.ASCII_BANNER, true),
 		envOrString(process.env.BANNER_COLOR, '#808080')
 	)
 );
@@ -306,6 +306,7 @@ const store = {
 	country: envOrString(process.env.COUNTRY, 'usa'),
 	maxPrice: {
 		series: {
+			3060: envOrNumber(process.env.MAX_PRICE_SERIES_3060TI),
 			3070: envOrNumber(process.env.MAX_PRICE_SERIES_3070),
 			3080: envOrNumber(process.env.MAX_PRICE_SERIES_3080),
 			3090: envOrNumber(process.env.MAX_PRICE_SERIES_3090),
@@ -334,6 +335,7 @@ const store = {
 		};
 	}),
 	showOnlySeries: envOrArray(process.env.SHOW_ONLY_SERIES, [
+		'3060',
 		'3070',
 		'3080',
 		'3090',

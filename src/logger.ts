@@ -93,18 +93,38 @@ export const Print = {
 
 		return `✖ ${buildProductString(link, store)} :: CAPTCHA`;
 	},
-	inStock(link: Link, store: Store, color?: boolean, sms?: boolean): string {
-		const productString = `${buildProductString(link, store)} :: IN STOCK`;
+	inStock(
+		link: Link,
+		store: Store,
+		color?: boolean,
+		sms?: boolean,
+		price?: number | null,
+		state?: string | null
+	): string {
+		const productString = `${buildProductString(link, store)} :: EN STOCK`;
+
+		state = state ? state.replace(/\s/g, '') : 'EN STOCK';
 
 		if (color) {
-			return chalk.bgGreen.white.bold(`🚀🚨 ${productString} 🚨🚀`);
+			let eur = '';
+			if (price) {
+				eur = ` :: PRIX :: EUR ${price}`;
+			}
+
+			return (
+				'✅ ' +
+				chalk.blueBright(buildProductString(link, store, false)) +
+				' :: ' +
+				chalk.greenBright(state) +
+				chalk.yellowBright(eur)
+			);
 		}
 
 		if (sms) {
 			return productString;
 		}
 
-		return `🚀🚨 ${productString} 🚨🚀`;
+		return ` ✅ ${productString} `;
 	},
 	inStockWaiting(link: Link, store: Store, color?: boolean): string {
 		if (color) {
@@ -117,6 +137,29 @@ export const Print = {
 		}
 
 		return `ℹ ${buildProductString(link, store)} :: IN STOCK, WAITING`;
+	},
+	comingSoon(
+		link: Link,
+		store: Store,
+		price: number | null,
+		color?: boolean
+	): string {
+		if (color) {
+			let eur = '';
+			if (price) {
+				eur = ` :: PRIX :: EUR ${price}`;
+			}
+
+			return (
+				'ℹ ' +
+				buildProductString(link, store, true) +
+				' :: ' +
+				chalk.yellow('EN PRÉCOMMANDE') +
+				chalk.yellowBright(eur)
+			);
+		}
+
+		return `ℹ ${buildProductString(link, store)} :: EN PRÉCOMMANDE`;
 	},
 	maxPrice(
 		link: Link,
@@ -174,11 +217,11 @@ export const Print = {
 				'✖ ' +
 				buildProductString(link, store, true) +
 				' :: ' +
-				chalk.red('OUT OF STOCK')
+				chalk.red('RUPTURE DE STOCK')
 			);
 		}
 
-		return `✖ ${buildProductString(link, store)} :: OUT OF STOCK`;
+		return `✖ ${buildProductString(link, store)} :: RUPTURE DE STOCK`;
 	},
 	productInStock(link: Link): string {
 		let productString = `Product Page: ${link.url}`;
@@ -215,10 +258,19 @@ function buildSetupString(
 function buildProductString(link: Link, store: Store, color?: boolean): string {
 	if (color) {
 		return (
-			chalk.cyan(`[${store.name}]`) +
-			chalk.grey(` [${link.brand} (${link.series})] ${link.model}`)
+			(store.DNS
+				? chalk.cyan(`[${store.DNS}]`)
+				: chalk.cyan(`[${store.name}]`)) +
+			chalk.grey(
+				` [${link.brand.toUpperCase()} (${
+					link.series
+				})] ${link.model.toUpperCase()}`
+			)
 		);
 	}
 
-	return `[${store.name}] [${link.brand} (${link.series})] ${link.model}`;
+	const finalName = store.DNS ? store.DNS : store.name;
+	return `[${finalName}] [${link.brand.toUpperCase()} (${
+		link.series
+	})] ${link.model.toUpperCase()}`;
 }

@@ -15,22 +15,26 @@ import {sendTweet} from './twitter';
 import {sendTwilioMessage} from './twilio';
 import {sendTwitchMessage} from './twitch';
 
-export function sendNotification(link: Link, store: Store) {
+export function sendNotification(
+	link: Link,
+	store: Store,
+	comingSoon?: boolean
+) {
 	// Priority
-	playSound();
-	sendEmail(link, store);
-	sendSms(link, store);
-	sendDesktopNotification(link, store);
+	// playSound();
+	// sendEmail(link, store);
+	// sendSms(link, store);
+	// sendDesktopNotification(link, store);
 	// Non-priority
-	adjustPhilipsHueLights();
-	sendDiscordMessage(link, store);
-	sendMqttMessage(link, store);
-	sendPagerDutyNotification(link, store);
-	sendPushbulletNotification(link, store);
-	sendPushoverNotification(link, store);
-	sendSlackMessage(link, store);
-	sendTelegramMessage(link, store);
-	sendTweet(link, store);
-	sendTwilioMessage(link, store);
-	sendTwitchMessage(link, store);
+	// adjustPhilipsHueLights();
+	// sendDiscordMessage(link, store);
+	// sendMqttMessage(link, store);
+	// sendPagerDutyNotification(link, store);
+	// sendPushbulletNotification(link, store);
+	// sendPushoverNotification(link, store);
+	// sendSlackMessage(link, store);
+	// sendTelegramMessage(link, store);
+	// sendTweet(link, store);
+	// sendTwilioMessage(link, store);
+	sendTwitchMessage(link, store, comingSoon);
 }

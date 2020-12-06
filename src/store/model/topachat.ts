@@ -3,17 +3,170 @@ import {Store} from './store';
 export const TopAchat: Store = {
 	labels: {
 		inStock: {
-			container: '.cart.button',
+			container: '.en-stock',
 			text: ['']
-		}
+		},
+		comingSoon: {
+			container: '.alert-dispo__button',
+			text: ['Me prévenir de la disponibilité']
+		},
+		outOfStock: {
+			container: '.en-rupture',
+			text: ['']
+		},
+		maxPrice: {
+			container: '#panier > div.prix > div.eproduct.NOR > span',
+			euroFormat: false
+		},
+		printPrice: true
 	},
 	links: [
+		// {
+		// 	brand: 'test:brand',
+		// 	model: 'test:model',
+		// 	series: 'test:series',
+		// 	url:
+		// 		'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in11019393.html'
+		// },
 		{
-			brand: 'test:brand',
-			model: 'test:model',
-			series: 'test:series',
+			brand: 'gainward',
+			model: 'Ghost OC',
+			series: '3060',
 			url:
-				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in11019393.html'
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006327.html'
+		},
+		{
+			brand: 'gainward',
+			model: 'Ghost',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006328.html'
+		},
+		{
+			brand: 'gainward',
+			model: 'phoenix',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006333.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'gaming pro oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006505.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'gaming oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006506.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'eagle oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006507.html'
+		},
+		{
+			brand: 'gigabyte',
+			model: 'aorus master',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006508.html'
+		},
+		{
+			brand: 'pny',
+			model: 'xlr8 revel epic-x',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006335.html'
+		},
+		{
+			brand: 'pny',
+			model: 'uprising',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006334.html'
+		},
+		{
+			brand: 'evga',
+			model: 'ftw3 ultra',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006620.html'
+		},
+		{
+			brand: 'msi',
+			model: 'gaming x trio',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006537.html'
+		},
+		{
+			brand: 'msi',
+			model: 'ventus 2x oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006536.html'
+		},
+		{
+			brand: 'msi',
+			model: 'ventus 3x oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006535.html'
+		},
+		{
+			brand: 'asus',
+			model: 'tuf oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006242.html'
+		},
+		{
+			brand: 'asus',
+			model: 'strix oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006243.html'
+		},
+		{
+			brand: 'asus',
+			model: 'tuf',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006306.html'
+		},
+		{
+			brand: 'asus',
+			model: 'dual',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006307.html'
+		},
+		{
+			brand: 'asus',
+			model: 'dual oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006682.html'
+		},
+		{
+			brand: 'zotac',
+			model: 'twin edge',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006277.html'
+		},
+		{
+			brand: 'zotac',
+			model: 'twin edge oc',
+			series: '3060',
+			url:
+				'https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wgfx_pcie_puis_ref_est_in20006276.html'
 		},
 		{
 			brand: 'zotac',

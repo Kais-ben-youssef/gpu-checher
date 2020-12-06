@@ -1,7 +1,12 @@
 import {Browser, Page, Response} from 'puppeteer';
 import {Link, Store, getStores} from './model';
 import {Print, logger} from '../logger';
-import {Selector, cardPrice, pageIncludesLabels} from './includes-labels';
+import {
+	Selector,
+	cardPrice,
+	extractPageContents,
+	pageIncludesLabels
+} from './includes-labels';
 import {
 	closePage,
 	delay,
@@ -100,6 +105,8 @@ async function lookupCard(
 		waitUntil: givenWaitFor
 	});
 
+	// Await page.screenshot({path: "success.png"});
+
 	if (!response) {
 		logger.debug(Print.noResponse(link, store, true));
 	}
@@ -117,9 +124,38 @@ async function lookupCard(
 	}
 
 	if (await lookupCardInStock(store, page, link)) {
+		let state = null;
 		const givenUrl =
 			link.cartUrl && config.store.autoAddToCart ? link.cartUrl : link.url;
-		logger.info(`${Print.inStock(link, store, true)}\n${givenUrl}`);
+
+		if (store.labels.printPrice && store.labels.maxPrice) {
+			const baseOptions: Selector = {
+				requireVisible: false,
+				selector: store.labels.container ?? 'body',
+				type: 'textContent'
+			};
+
+			const price = await cardPrice(
+				page,
+				store.labels.maxPrice,
+				1,
+				baseOptions
+			);
+
+			if (store.labels.occasion) {
+				const stateSelector: Selector = {
+					requireVisible: false,
+					selector: store.labels.occasion.selector,
+					type: 'textContent'
+				};
+
+				state = await extractPageContents(page, stateSelector);
+			}
+
+			logger.info(`${Print.inStock(link, store, true, false, price, state)}`);
+		} else {
+			logger.info(`${Print.inStock(link, store, true)}`);
+		}
 
 		if (config.browser.open) {
 			await (link.openCartAction === undefined
@@ -155,21 +191,37 @@ async function lookupCardInStock(store: Store, page: Page, link: Link) {
 		type: 'textContent'
 	};
 
-	if (store.labels.inStock) {
-		const options = {
-			...baseOptions,
-			requireVisible: true,
-			type: 'outerHTML' as const
-		};
-
-		if (!(await pageIncludesLabels(page, store.labels.inStock, options))) {
+	if (store.labels.outOfStock) {
+		if (await pageIncludesLabels(page, store.labels.outOfStock, baseOptions)) {
 			logger.info(Print.outOfStock(link, store, true));
 			return false;
 		}
 	}
 
-	if (store.labels.outOfStock) {
-		if (await pageIncludesLabels(page, store.labels.outOfStock, baseOptions)) {
+	if (store.labels.comingSoon && store.labels.maxPrice) {
+		const options = {
+			...baseOptions,
+			requireVisible: false,
+			type: 'outerHTML' as const
+		};
+
+		const price = await cardPrice(page, store.labels.maxPrice, 1, baseOptions);
+
+		if (await pageIncludesLabels(page, store.labels.comingSoon, options)) {
+			logger.info(Print.comingSoon(link, store, price, true));
+			sendNotification(link, store, true);
+			return false;
+		}
+	}
+
+	if (store.labels.inStock) {
+		const options = {
+			...baseOptions,
+			requireVisible: false,
+			type: 'outerHTML' as const
+		};
+
+		if (!(await pageIncludesLabels(page, store.labels.inStock, options))) {
 			logger.info(Print.outOfStock(link, store, true));
 			return false;
 		}
@@ -191,6 +243,7 @@ async function lookupCardInStock(store: Store, page: Page, link: Link) {
 			config.store.maxPrice.series[link.series],
 			baseOptions
 		);
+
 		const maxPrice = config.store.maxPrice.series[link.series];
 		if (price) {
 			logger.info(Print.maxPrice(link, store, price, maxPrice, true));
