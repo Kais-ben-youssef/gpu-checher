@@ -60,7 +60,7 @@ async function lookup(browser: Browser, store: Store) {
 		page.setDefaultNavigationTimeout(config.page.timeout);
 
 		const userAgent = new UserAgent();
-		await page.setUserAgent(getRandomUserAgent());
+		await page.setUserAgent(userAgent.toString());
 
 		if (store.disableAdBlocker) {
 			try {
@@ -108,7 +108,7 @@ async function lookupCard(
 		waitUntil: givenWaitFor
 	});
 
-	// await page.screenshot({path: 'success.png'});
+	// await page.screenshot({path: "success.png"});
 
 	if (!response) {
 		logger.debug(Print.noResponse(link, store, true));

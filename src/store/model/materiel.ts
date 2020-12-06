@@ -16,7 +16,7 @@ export const materiel: Store = {
 		},
 		maxPrice: {
 			container: '.o-product__price',
-			euroFormat: false
+			euroFormat: true
 		},
 		printPrice: true
 	},
